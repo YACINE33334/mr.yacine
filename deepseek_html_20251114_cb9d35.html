@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslandDark.com - أصل رقمي نادر</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #121212;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #e6c762;
+            --text-light: #f5f5f5;
+            --text-gray: #b0b0b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1534270804882-6b5048b1c1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, var(--primary-dark) 80%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-gray);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-gold);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Sections Common Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+
+        /* Why Section */
+        .why-section {
+            background-color: var(--secondary-dark);
+            position: relative;
+        }
+
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .why-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .rarity-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .point-card {
+            background: rgba(18, 18, 18, 0.8);
+            border-left: 3px solid var(--accent-gold);
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .point-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .point-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        /* Strength Analysis */
+        .strength-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .strength-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(18, 18, 18, 0.6);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .strength-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .strength-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .strength-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Brands Section */
+        .brands-section {
+            background-color: var(--secondary-dark);
+            position: relative;
+        }
+
+        .brands-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1534270804882-6b5048b1c1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-card {
+            background: rgba(18, 18, 18, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+
+        .brand-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        /* Industries Section */
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .industry-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(18, 18, 18, 0.6);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .industry-item:hover {
+            transform: scale(1.05);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--secondary-dark);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .contact-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .domain-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">IslandDark.com</h1>
+            <p class="fade-in">أصل رقمي نادر - براند عالمي جاهز</p>
+            <p class="fade-in">اسم براندي جاهز عبر صناعات الروم، البيرة، القهوة، الإعلام والسياحة الفاخرة</p>
+        </div>
+        <div class="scroll-down" onclick="scrollToSection('why')">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why-section" id="why">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا IslandDark.com نادر؟</h2>
+            </div>
+            <div class="why-content">
+                <div class="rarity-points">
+                    <div class="point-card fade-in">
+                        <h3>اسم براند عالمي</h3>
+                        <p>IslandDark.com ليس وصفًا عامًا بل اسم براند عالمي فريد، عكس darkisland.com الذي هو دومين وصفي محجوز.</p>
+                    </div>
+                    <div class="point-card fade-in">
+                        <h3>قابلية إعادة الترتيب</h3>
+                        <p>إمكانية إعادة ترتيب جزئيات الاسم تعطي قيمة براندية إضافية وتجعله أصلًا تسويقيًا قويًا.</p>
+                    </div>
+                    <div class="point-card fade-in">
+                        <h3>قابلية التوسع العالمي</h3>
+                        <p>اسم قصير، قوي، سهل النطق، وقابل للاستثمار في عدة صناعات عالمية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strength Analysis -->
+    <section class="strength-section" id="strength">
+        <div class="container">
+            <div class="section-title">
+                <h2>تحليل القوة</h2>
+            </div>
+            <div class="strength-grid">
+                <div class="strength-item fade-in">
+                    <div class="strength-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>قابلية البرندة</h3>
+                    <p>اسم متميز يصلح لبناء هوية براندية قوية في أسواق متنوعة.</p>
+                </div>
+                <div class="strength-item fade-in">
+                    <div class="strength-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>طلب السوق</h3>
+                    <p>طلب متزايد على أسماء النطاقات القصيرة والبراندية في الأسواق العالمية.</p>
+                </div>
+                <div class="strength-item fade-in">
+                    <div class="strength-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>جاذبية متعددة الصناعات</h3>
+                    <p>يتناسب مع صناعات المشروبات، السياحة الفاخرة، الإعلام والترفيه.</p>
+                </div>
+                <div class="strength-item fade-in">
+                    <div class="strength-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>نطاق .com متميز</h3>
+                    <p>نطاق .com مكون من كلمتين قصيرتين ونادرتين معًا.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section" id="brands">
+        <div class="container">
+            <div class="section-title">
+                <h2>العلامات العالمية التي تستخدم الاسم</h2>
+            </div>
+            <div class="brands-grid">
+                <div class="brand-card fade-in">
+                    <div class="brand-logo">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <h3>Isle of Barra Distillers</h3>
+                    <p>اسكتلندا - منتج رسمي باسم Island Dark Rum</p>
+                </div>
+                <div class="brand-card fade-in">
+                    <div class="brand-logo">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <h3>Orkney Brewery</h3>
+                    <p>اسكتلندا - بيرة شهيرة باسم Dark Island Ale</p>
+                </div>
+                <div class="brand-card fade-in">
+                    <div class="brand-logo">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <h3>Manatee Coffee</h3>
+                    <p>الولايات المتحدة - منتج باسم Island Dark Coffee</p>
+                </div>
+                <div class="brand-card fade-in">
+                    <div class="brand-logo">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Dark Island (لعبة فيديو)</h3>
+                    <p>لعبة مغامرات ورعب شهيرة تحمل الاسم نفسه</p>
+                </div>
+                <div class="brand-card fade-in">
+                    <div class="brand-logo">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>روايات Dark Island</h3>
+                    <p>عدة روايات عالمية تحمل اسم Dark Island أو Island Dark</p>
+                </div>
+                <div class="brand-card fade-in">
+                    <div class="brand-logo">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>أفلام ومسلسلات</h3>
+                    <p>أفلام وثائقية ومسلسلات تحمل الاسم في محتواها</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="industries-section" id="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>الصناعات المتنافسة على نفس الاسم</h2>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <p>الروم</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <p>البيرة</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <p>القهوة</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <p>ألعاب الفيديو</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <p>السينما</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                    <p>منتجعات فاخرة</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <p>السياحة البيئية</p>
+                </div>
+                <div class="industry-item fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <p>منتجعات Dark-sky</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>الاتصال والاستفسارات</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <a href="mailto:yac200508@gmail.com" class="contact-link">yac200508@gmail.com</a>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <a href="https://instagram.com/yacine.sio" target="_blank" class="contact-link">@yacine.sio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="domain-name">IslandDark.com</div>
+                <p>أصل رقمي نادر - براند عالمي جاهز</p>
+                <p>© 2023 جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            fadeInObserver.observe(element);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.getElementById('hero');
+            hero.style.backgroundPositionY = -(scrolled * 0.5) + 'px';
+        });
+    </script>
+</body>
+</html>
