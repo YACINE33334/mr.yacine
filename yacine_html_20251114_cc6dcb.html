@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslandDark - قوة الظلام الحصرية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --gold-primary: #d4af37;
+            --gold-secondary: #f4e4a6;
+            --border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.5s ease;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+
+        .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, transparent 50%),
+                var(--bg-primary);
+            z-index: -1;
+        }
+
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .cta-button:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .cta-button:hover:before {
+            left: 100%;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-dark {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 70px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير التموج الذهبي */
+        .content-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .content-card:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-card:hover:before {
+            opacity: 1;
+        }
+
+        .content-card:hover:after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* تأثير الموجة عند المرور */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--text-secondary);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-card:hover .card-icon {
+            color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(1.1);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 100px 0;
+            background: var(--bg-tertiary);
+        }
+
+        .contact-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .email-container {
+            display: inline-block;
+            padding: 25px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .email-container:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .email-container:hover:before {
+            left: 100%;
+        }
+
+        .email-link {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .email-link:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-title {
+                font-size: 2.2rem;
+            }
+            
+            .email-link {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-title {
+                font-size: 1.8rem;
+            }
+            
+            .email-link {
+                font-size: 1.1rem;
+            }
+            
+            .email-container {
+                padding: 20px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">IslandDark</div>
+        <nav class="nav-links">
+            <a href="#identity">الهوية</a>
+            <a href="#applications">التطبيقات</a>
+            <a href="#philosophy">الفلسفة</a>
+            <a href="#contact">الاتصال</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="dark-overlay"></div>
+        <div class="floating-particles" id="floatingParticles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>IslandDark</h1>
+                <p>اسم مصمم للسلطة، الابتكار، والهيمنة طويلة الأمد</p>
+                <p style="font-size: 1.1rem; margin-top: -10px;">حيث تلتقي الرؤية، القوة، والدقة</p>
+                <a href="#contact" class="cta-button">الاتصال بالمالك</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why the Name Matters -->
+    <section class="section" id="identity">
+        <div class="container">
+            <h2 class="section-title">علامة ذات ثقل</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="card-title">تواجد عالمي</h3>
+                    <p class="card-text">IslandDark يحمل جاذبية دولية فورية مع بنيته التي لا تُنسى وشخصيته النخبوية التي تتجاوز الحدود الثقافية</p>
+                </div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-adjust"></i>
+                    </div>
+                    <h3 class="card-title">تباين وعمق</h3>
+                    <p class="card-text">التوتر بين "Island" و "Dark" يخلق هوية أسطورية وقوية مثالية للشركات التي تبرز عن الضجيج</p>
+                </div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3 class="card-title">قوة بدائية</h3>
+                    <p class="card-text">الاسم يستحضر قوى أساسية - متانة الأرض، غموض الظلام - مخلّفًا انطباعًا لا يُنسى للعلامة التجارية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Built for Any Future -->
+    <section class="section section-dark" id="applications">
+        <div class="container">
+            <h2 class="section-title">تطبيقات لا حدود لها</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="card-title">الذكاء الاصطناعي</h3>
+                    <p class="card-text">للمختبرات التي تدفع حدود الذكاء الاصطناعي وأنظمة التعلم العميق</p>
+                </div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="card-title">الأمن السيبراني</h3>
+                    <p class="card-text">للشركات التي تحمي البنية التحتية الرقمية بأنظمة استخبارات تهديد متطورة</p>
+                </div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="card-title">التمويل والاستثمار</h3>
+                    <p class="card-text">للمؤسسات المالية ومجموعات الاستثمار التي تعمل بدقة وبصيرة استراتيجية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identity Philosophy -->
+    <section class="section" id="philosophy">
+        <div class="container">
+            <h2 class="section-title">بسيط. قوي. أيقوني.</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-volume-mute"></i>
+                    </div>
+                    <h3 class="card-title">قوة صامتة</h3>
+                    <p class="card-text">علامة تجارية لا تحتاج للصراخ - وجودها يُحس من خلال الجوهر، وليس الصوت</p>
+                </div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="card-title">تصميم دائم</h3>
+                    <p class="card-text">مبني ليتجاوز الموضات بمبادئ خالدة للوضوح، الغرض، والقوة</p>
+                </div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="card-title">بساطة أيقونية</h3>
+                    <p class="card-text">مقطر إلى عناصره الأساسية، مخلقًا أقصى تأثير بأقل تعبير</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="contact-title">الاتصال بالمالك</h2>
+            <p class="contact-text">للاستفسارات الجادة بخصوص الحصول على IslandDark.com</p>
+            <div class="email-container">
+                <a href="mailto:yac200508@gmail.com" class="email-link">yac200508@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2025 IslandDark — كل الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // إنشاء الجسيمات العائمة
+        function createFloatingParticles() {
+            const container = document.getElementById('floatingParticles');
+            const particleCount = 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // أحجام وأماكن عشوائية
+                const size = Math.random() * 3 + 1;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 25;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // تأثير التموج عند النقر
+        function createRipple(event) {
+            const card = event.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple-effect');
+            
+            card.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // إضافة تأثير التموج للبطاقات
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.addEventListener('mouseenter', createRipple);
+        });
+
+        // التمرير السلس لروابط التنقل
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // خلفية الهيدر عند التمرير
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(5, 5, 5, 0.95)';
+                header.style.padding = '20px 50px';
+            } else {
+                header.style.background = 'rgba(5, 5, 5, 0.9)';
+                header.style.padding = '25px 50px';
+            }
+        });
+
+        // التهيئة عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingParticles();
+            
+            // تأثير الظهور للعناصر عند التمرير
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // تطبيق تأثير الظهور لبطاقات المحتوى
+            const contentCards = document.querySelectorAll('.content-card');
+            contentCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
